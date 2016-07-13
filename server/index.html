@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sensors live feed</title>
+        <style>
+            body {
+                padding: 10px 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <p>Temperature (current: <span id="current-temperature"></span>&deg;C)</p>
+            <canvas id="temperature" width="400" height="200"></canvas>
+        </div>
+
+        <div>
+            <p>Humidity (current: <span id="current-humidity"></span>%)</p>
+            <canvas id="humidity" width="400" height="200"></canvas>
+        </div>
+
+        <script src="/scripts/smoothie.js"></script>
+        <script src="/scripts/front.js"></script>
+    </body>
+</html>
