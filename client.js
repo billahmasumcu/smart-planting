@@ -9,8 +9,11 @@ var coap = require('coap'),
         host: 'localhost',
         port: 5683,
         temperaturePin: 'A0',
-        humidityPin: 'A5'
+        humidityPin: 'A5',
+        switch1Pin: 2
     };
+
+var switch_1;
 
 /**
  * Fire when arduino board is ready
@@ -18,6 +21,10 @@ var coap = require('coap'),
 board.on("ready", function() {
     console.log('Board is ready.');
     observe();
+
+    switch_1 = new five.Pin(config.switch1Pin);
+
+
     /**
      * Initiate sensors
      */
@@ -87,7 +94,13 @@ function observe() {
         var req = coap.request(query);
         req.on('response', function(res) {
             //console.log('response code', res.code);
-            res.pipe(process.stdout);
+            //res.pipe(process.stdout);
+            res.on('data', function(data){
+                switch_1.high();
+                json = JSON.parse(data.toString());
+                console.log(json.hello);
+            });
+
         });
         req.end();
     } catch (err) {

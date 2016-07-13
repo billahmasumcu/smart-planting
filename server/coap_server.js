@@ -1,6 +1,6 @@
 var coap = require('coap'),
     coapServer = coap.createServer(),
-    emitter = require('./emitter');
+    emitter = require('../lib/emitter');
 
 init();
 
@@ -33,11 +33,12 @@ function serveObserve(req, res) {
     if (req.headers.Observe !== 0)
         return res.end('observe should be enabled on request\n');
 
+    data = {switch_1: true};
     var interval = setInterval(function() {
-      res.write(new Date().toISOString() + '\n');
-  }, 1000);
+        res.write(JSON.stringify(data));
+    }, 1000);
 
     res.on('finish', function(err) {
-      clearInterval(interval);
-  });
+        //clearInterval(interval);
+    });
 }

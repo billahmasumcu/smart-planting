@@ -1,4 +1,4 @@
-var emitter = require('./emitter'),
+var emitter = require('../lib/emitter'),
     WebSocketServer = require('ws').Server,
     wss = new WebSocketServer({
         port: 6455

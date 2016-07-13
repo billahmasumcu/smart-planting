@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "bl": "^1.1.2",
     "coap": "^0.17.0",
     "express": "~4.13.4",
     "johnny-five": "^0.9.59",
