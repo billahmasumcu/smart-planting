@@ -25,7 +25,7 @@ function serveIndex(req, res) {
     res.setOption('Content-Format', 'application/json');
     sensorData = req.payload.toString();
     emitter.emit('sensor_data', sensorData);
-    console.log(req.payload.toString());
+    //console.log(req.payload.toString());
     res.end();
 }
 
@@ -33,10 +33,9 @@ function serveObserve(req, res) {
     if (req.headers.Observe !== 0)
         return res.end('observe should be enabled on request\n');
 
-    data = {switch_1: true};
-    var interval = setInterval(function() {
+    emitter.on('observe', function(data) {
         res.write(JSON.stringify(data));
-    }, 1000);
+    })
 
     res.on('finish', function(err) {
         //clearInterval(interval);

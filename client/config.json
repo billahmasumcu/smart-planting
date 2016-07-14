@@ -4,7 +4,10 @@
     "post_interval": 1000,
     "pin": {
         "temperature": "A0",
-        "humidity": "A5",
-        "switch_1": 2
+        "humidity": "A1",
+        "light": "A2",
+        "switch_1": 2,
+        "switch_2": 3,
+        "switch_3": 4
     }
 }

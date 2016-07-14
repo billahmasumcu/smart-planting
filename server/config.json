@@ -1,0 +1,17 @@
+{
+    "rules": [{
+        "sensor": "light",
+        "target": "smaller",
+        "value": 20,
+        "elapsed": 2000,
+        "actuator": "switch_3",
+        "action": true
+    }, {
+        "sensor": "light",
+        "target": "greater",
+        "value": 30,
+        "elapsed": 5000,
+        "actuator": "switch_3",
+        "action": false
+    }]
+}
