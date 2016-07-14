@@ -40,6 +40,10 @@ function initBoard() {
     cleanup()
 }
 
+emitter.on('end', function() {
+    cleanup()
+})
+
 function cleanup() {
     switch_1.write(false)
     switch_2.write(false)
