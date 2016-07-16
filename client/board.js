@@ -111,7 +111,7 @@ function blinkOnce() {
     switchStatus.high()
     setTimeout(function() {
         switchStatus.low()
-    }, 500)
+    }, 100)
 }
 
 function readSwitch(sw) {

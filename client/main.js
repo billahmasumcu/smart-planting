@@ -1,5 +1,5 @@
-require('./coap_client');
 require('./board');
+require('./coap_client');
 
 var emitter = require('../lib/emitter')
 
@@ -9,5 +9,5 @@ var endHandler = function() {
     process.exit()
 }
 
-process.on('SIGINT', endHandler)
-process.on('uncaughtException', endHandler)
+//process.on('SIGINT', endHandler)
+//process.on('uncaughtException', endHandler)

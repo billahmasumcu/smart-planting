@@ -23,7 +23,6 @@ function send(data) {
         req.on('response', function(res) {
             emitter.emit('status_switch', 'send');
             //console.log('response code', res.code);
-            //res.pipe(process.stdout);
         });
         req.end();
     } catch (err) {
@@ -42,11 +41,8 @@ function observe() {
     try {
         var req = coap.request(connection);
         req.on('response', function(res) {
-            //console.log('response code', res.code);
-            //res.pipe(process.stdout);
             res.on('data', function(data) {
                 observeData = JSON.parse(data.toString());
-                console.log(observeData);
                 emitter.emit('observe_data', observeData);
             });
 

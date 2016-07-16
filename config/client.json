@@ -1,5 +1,5 @@
 {
-    "host": "192.168.178.179",
+    "host": "localhost",
     "port": 5683,
     "post_interval": 10,
     "pin": {

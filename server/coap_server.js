@@ -12,7 +12,7 @@ function init() {
 
     // Listen CoAP server for port 5683 as default
     coapServer.listen(function() {
-        console.log('CoAP server: started at port 5683.');
+        console.log('CoAP server: started at port 5683');
     });
 }
 
@@ -25,20 +25,22 @@ function serveIndex(req, res) {
     res.setOption('Content-Format', 'application/json');
     sensorData = req.payload.toString();
     emitter.emit('sensor_data', sensorData);
-    //console.log(req.payload.toString());
+    console.log(req.payload.toString());
     res.end();
 }
 
 function serveObserve(req, res) {
-    if (req.headers.Observe !== 0)
+    if (req.headers.Observe !== 0) {
+        console.log('observe response fails due to missing header')
         return res.end('observe should be enabled on request\n');
+    }
 
-    onsole.log('CoAP observe client has been connected.')
+    console.log('CoAP observe client has been connected.')
     emitter.on('observe', function(data) {
         res.write(JSON.stringify(data));
     })
 
     res.on('finish', function(err) {
-        onsole.log('CoAP observe client has been disconnected.')
+        console.log('CoAP observe client has been disconnected.')
     });
 }

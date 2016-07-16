@@ -5,15 +5,15 @@
     "rules": [{
         "sensor": "light",
         "target": "smaller",
-        "value": 20,
-        "elapsed": 20,
+        "value": 40,
+        "elapsed": 10,
         "actuator": "switch_3",
         "action": true
     }, {
         "sensor": "light",
         "target": "greater",
-        "value": 30,
-        "elapsed": 20,
+        "value": 42,
+        "elapsed": 10,
         "actuator": "switch_3",
         "action": false
     }]

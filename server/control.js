@@ -1,18 +1,6 @@
 var config = require('../config/server'),
     emitter = require('../lib/emitter');
 
-/*dummyValue = 32
-setInterval(function() {
-    if (dummyValue >= 25)
-        dummyValue--;
-
-    emitter.emit('sensor_data', JSON.stringify({
-        light: {
-            data: dummyValue
-        }
-    }))
-}, 1000)*/
-
 startTime = []
 emitter.on('sensor_data', function(sensorData) {
     //console.log(sensorData)
@@ -39,12 +27,11 @@ emitter.on('sensor_data', function(sensorData) {
 
 function _trigger(i) {
     var elapsedTime = new Date().getTime() - startTime[i]
-        //console.log(elapsedTime)
     if (elapsedTime >= rule.elapsed * 1000) {
-        console.log(rule.value)
         result = {}
         result[rule.actuator] = rule.action
         emitter.emit('observe', result)
+            //console.log(result)
         delete startTime[i]
     }
 }

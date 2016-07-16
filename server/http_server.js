@@ -25,5 +25,5 @@ app.get('/data.json', function(req, res) {
 })
 
 app.listen(3000, function() {
-    console.log('Web app listening on port 3000!')
+    console.log('HTTP server: started at port 3000')
 })
