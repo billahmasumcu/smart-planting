@@ -1,18 +1,24 @@
 var express = require('express'),
     emitter = require('../lib/emitter'),
     db = require('./db'),
-    app = express();
+    app = express(),
+    path = require('path');
 
-/**
- * Configuring web app
- */
-app.use(express.static('../public'))
+app.set('views', path.join(__dirname, '..', 'views'));
+app.set('view engine', 'jade');
+
+app.use(express.static(path.join(__dirname, '..', 'public')))
 
 app.get('/', function(req, res) {
-    res.sendFile(__dirname + '/index.html')
+    res.render('index')
 })
 
-app.get('/data', function(req, res) {
+app.get('/graph', function(req, res) {
+    res.render('graph')
+        //res.sendFile(__dirname + '/html/graph.html')
+})
+
+app.get('/data.json', function(req, res) {
     db.getCollection().find({}).toArray(function(err, data) {
         res.send(data)
     });

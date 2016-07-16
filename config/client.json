@@ -1,13 +1,14 @@
 {
-    "host": "localhost",
+    "host": "192.168.178.179",
     "port": 5683,
-    "post_interval": 1000,
+    "post_interval": 10,
     "pin": {
         "temperature": "A0",
         "humidity": "A1",
         "light": "A2",
         "switch_1": 2,
         "switch_2": 3,
-        "switch_3": 4
+        "switch_3": 4,
+        "switch_status": 13
     }
 }

@@ -1,12 +1,12 @@
 var coap = require('coap'),
-    config = require('./config'),
+    config = require('../config/client'),
     emitter = require('../lib/emitter');
 
-emitter.on('board_ready', function(){
+emitter.on('board_ready', function() {
     observe();
 });
 
-emitter.on('sensor_data', function(data){
+emitter.on('sensor_data', function(data) {
     send(data);
 });
 
@@ -21,6 +21,7 @@ function send(data) {
         req.setOption('Content-Format', 'application/json');
         req.write(JSON.stringify(data));
         req.on('response', function(res) {
+            emitter.emit('status_switch', 'send');
             //console.log('response code', res.code);
             //res.pipe(process.stdout);
         });

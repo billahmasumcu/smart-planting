@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        title Sensors live feed
+        style.
+            body {
+                padding: 10px 100px;
+            }
+    body
+        h1 Sensors live feed
+        #monitor
+            div
+                p
+                    | Temperature (current:
+                    span#current-temperature
+                    | &deg;C)
+                canvas#temperature(width="400" height="200")
+            div
+                p Humidity (current: <span id="current-humidity"></span>%)
+                canvas#humidity(width="400" height="200")
+            div
+                p Light (current: <span id="current-light"></span>%)
+                canvas#light(width="400" height="200")
+
+        script(src="build/main.js")

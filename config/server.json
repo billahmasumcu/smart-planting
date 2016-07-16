@@ -1,16 +1,19 @@
 {
+    "hostname": "localhost",
+    "http_port": 3000,
+    "ws_port": 6455,
     "rules": [{
         "sensor": "light",
         "target": "smaller",
         "value": 20,
-        "elapsed": 2000,
+        "elapsed": 20,
         "actuator": "switch_3",
         "action": true
     }, {
         "sensor": "light",
         "target": "greater",
         "value": 30,
-        "elapsed": 5000,
+        "elapsed": 20,
         "actuator": "switch_3",
         "action": false
     }]

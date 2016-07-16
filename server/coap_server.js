@@ -12,7 +12,7 @@ function init() {
 
     // Listen CoAP server for port 5683 as default
     coapServer.listen(function() {
-        console.log('CoAP server started!');
+        console.log('CoAP server: started at port 5683.');
     });
 }
 
@@ -33,11 +33,12 @@ function serveObserve(req, res) {
     if (req.headers.Observe !== 0)
         return res.end('observe should be enabled on request\n');
 
+    onsole.log('CoAP observe client has been connected.')
     emitter.on('observe', function(data) {
         res.write(JSON.stringify(data));
     })
 
     res.on('finish', function(err) {
-        //clearInterval(interval);
+        onsole.log('CoAP observe client has been disconnected.')
     });
 }

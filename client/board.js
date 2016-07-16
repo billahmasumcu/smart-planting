@@ -1,6 +1,6 @@
 var five = require("johnny-five"),
     emitter = require('../lib/emitter'),
-    config = require('./config'),
+    config = require('../config/client'),
     board = new five.Board(),
     sensorData = {};
 
@@ -16,6 +16,7 @@ board.on("ready", function() {
     recordHumidity()
     recordLight()
     controllSwitch()
+    statusSwitch()
 
     /**
      * Call send function in every x interval
@@ -23,7 +24,7 @@ board.on("ready", function() {
     setInterval(function() {
         sensorData.isotime = new Date().toISOString()
         emitter.emit('sensor_data', sensorData)
-    }, config.post_interval)
+    }, config.post_interval * 1000)
 });
 
 function initBoard() {
@@ -37,6 +38,7 @@ function initBoard() {
     switch_1 = new five.Pin(config.pin.switch_1)
     switch_2 = new five.Pin(config.pin.switch_2)
     switch_3 = new five.Pin(config.pin.switch_3)
+    switchStatus = new five.Pin(config.pin.switch_status)
     cleanup()
 }
 
@@ -83,9 +85,10 @@ function recordLight() {
     })
 }
 
-
 function controllSwitch() {
     emitter.on('observe_data', function(data) {
+        blinkOnce()
+        blinkOnce()
         console.log(data)
         if (typeof data.switch_1 !== 'undefined')
             switch_1.write(data.switch_1);
@@ -96,6 +99,20 @@ function controllSwitch() {
     })
 }
 
+function statusSwitch() {
+    emitter.on('status_switch', function(type) {
+        if ('send' == type) {
+            blinkOnce()
+        }
+    })
+}
+
+function blinkOnce() {
+    switchStatus.high()
+    setTimeout(function() {
+        switchStatus.low()
+    }, 500)
+}
 
 function readSwitch(sw) {
     sw.read(function(err, data) {

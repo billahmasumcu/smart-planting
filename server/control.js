@@ -1,4 +1,4 @@
-var config = require('./config'),
+var config = require('../config/server'),
     emitter = require('../lib/emitter');
 
 /*dummyValue = 32
@@ -40,7 +40,7 @@ emitter.on('sensor_data', function(sensorData) {
 function _trigger(i) {
     var elapsedTime = new Date().getTime() - startTime[i]
         //console.log(elapsedTime)
-    if (elapsedTime >= rule.elapsed) {
+    if (elapsedTime >= rule.elapsed * 1000) {
         console.log(rule.value)
         result = {}
         result[rule.actuator] = rule.action
