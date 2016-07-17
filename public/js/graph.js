@@ -18,7 +18,7 @@ function graph() {
             type: 'scatter',
             mode: 'lines',
             x: json.map(function(d) {
-                return new Date(d.isotime)
+                return new Date(d.time)
             }),
             y: json.map(function(d) {
                 return d.temperature.data
@@ -30,7 +30,7 @@ function graph() {
             type: 'scatter',
             mode: 'lines',
             x: json.map(function(d) {
-                return new Date(d.isotime)
+                return new Date(d.time)
             }),
             y: json.map(function(d) {
                 return d.humidity.data
@@ -42,7 +42,7 @@ function graph() {
             type: 'scatter',
             mode: 'lines',
             x: json.map(function(d) {
-                return new Date(d.isotime)
+                return new Date(d.time)
             }),
             y: json.map(function(d) {
                 return d.light.data

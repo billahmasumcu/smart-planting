@@ -22,7 +22,7 @@ board.on("ready", function() {
      * Call send function in every x interval
      */
     setInterval(function() {
-        sensorData.isotime = new Date().toISOString()
+        sensorData.time = new Date().getTime() //new Date().toISOString()
         emitter.emit('sensor_data', sensorData)
     }, config.post_interval * 1000)
 });

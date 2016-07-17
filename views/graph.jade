@@ -8,6 +8,17 @@ html
             }
     body
         h1 Graph
+
+        a(href="/") Home
+        &nbsp;
+        a(href="/live") Live
+        &nbsp;
+        a(href="/graph/7") Last 7 days
+        &nbsp;
+        a(href="/graph/30") Last 30 days
+
+        if day
+            h2 Graph of last #{day} days
         #graph
 
-        script(src="build/main.js")
+        script(src="/build/main.js")
