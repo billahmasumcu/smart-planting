@@ -1,17 +1,25 @@
 var plotly = require('plotly.js'),
-    config = require('../../config/server.json'),
-    jsonPath = 'http://' + config.hostname + ':' + config.http_port + '/data.json'
+    config = require('../../config/server.json');
 
 init()
 
 function init() {
     var element = document.getElementById('graph');
     if (typeof(element) != 'undefined' && element != null) {
-        graph()
+        graph(getPath())
     }
 }
 
-function graph() {
+function getPath() {
+    var jsonPath = 'http://' + config.hostname + ':' + config.http_port + '/data.json'
+    var element = document.getElementById('days');
+    if (typeof(element) != 'undefined' && element != null) {
+        jsonPath += '/' + element.innerHTML
+    }
+    return jsonPath
+}
+
+function graph(jsonPath) {
     plotly.d3.json(jsonPath, function(json) {
         var temperature = {
             name: "Temperature",

@@ -18,7 +18,10 @@ html
         a(href="/graph/30") Last 30 days
 
         if day
-            h2 Graph of last #{day} days
+            h2
+                | Graph of last 
+                span#days=  day
+                |  days
         #graph
 
         script(src="/build/main.js")
